@@ -139,5 +139,25 @@ namespace WeatherInCity.Test
 
             Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
         }
+
+        [TestMethod]
+        public void GetAverageTemperature_CheckRounding_Test()
+        {
+            TemperatureInCity t = new TemperatureInCity();
+
+            List<Item> ItemsInput = new List<Item> {
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = 1},
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = 2},
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = 2}
+                                                   };
+
+            List<Item> ItemsOutput = new List<Item> {
+                                                     new Item{City = "Saratov", Year = 2000, Temperature = 2}
+                                                    };
+
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
+
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
+        }
     }
 }

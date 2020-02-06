@@ -28,7 +28,7 @@ namespace WeatherInCity
                 {
                     City = item.Key.City,
                     Year = item.Key.Year,
-                    Temperature = (int)item.Average(t => t.Temperature)
+                    Temperature = (int)Math.Round(item.Average(t => t.Temperature))
                 });
             }
 
