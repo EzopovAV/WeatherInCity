@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WeatherInCity.Test
@@ -28,7 +29,7 @@ namespace WeatherInCity.Test
 
             var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
-            Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error array test.");
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error array test.");
         }
 
         [TestMethod]
@@ -52,7 +53,7 @@ namespace WeatherInCity.Test
 
             var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
-            Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error list test.");
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
         }
 
         [TestMethod]
@@ -84,30 +85,59 @@ namespace WeatherInCity.Test
 
             var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
-            Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error different city test.");
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error different city test.");
         }
 
-
-
-        bool CompareItems(IEnumerable<Item> items1, IEnumerable<Item> items2)
+        [TestMethod]
+        public void GetAverageTemperature_NullInput_Test()
         {
-            bool EqualItems = true;
-            int count1 = 0, count2 = 0;
-            foreach (var item in items1) count1++;
-            foreach (var item in items2) count2++;
-            if (count1 != count2) return false;
+            TemperatureInCity t = new TemperatureInCity();
 
-            var items2Enumerator = items2.GetEnumerator();
-            foreach (var item in items1)
-            {
-                items2Enumerator.MoveNext();
-                EqualItems = item.City == items2Enumerator.Current.City &&
-                             item.Year == items2Enumerator.Current.Year &&
-                             item.Temperature == items2Enumerator.Current.Temperature;
-                if (!EqualItems) break;
-            }
+            Assert.ThrowsException<ArgumentNullException>(() => t.GetAverageTemperatureInCityPerYear(null));
+        }
 
-            return EqualItems;
+        [TestMethod]
+        public void GetAverageTemperature_EmptyCityInput_Test()
+        {
+            List<Item> ItemsInput = new List<Item> {new Item{City = "", Year = 2000, Temperature = 7}};
+
+            TemperatureInCity t = new TemperatureInCity();
+
+            Assert.ThrowsException<ArgumentException>(() => t.GetAverageTemperatureInCityPerYear(ItemsInput));
+        }
+
+        [TestMethod]
+        public void GetAverageTemperature_NotLetterCityInput_Test()
+        {
+            List<Item> ItemsInput = new List<Item> { new Item { City = "Moskva_", Year = 2000, Temperature = 7 } };
+
+            TemperatureInCity t = new TemperatureInCity();
+
+            Assert.ThrowsException<ArgumentException>(() => t.GetAverageTemperatureInCityPerYear(ItemsInput));
+        }
+
+        [TestMethod]
+        public void GetAverageTemperature_ComplexCity_Test()
+        {
+            TemperatureInCity t = new TemperatureInCity();
+
+            List<Item> ItemsInput = new List<Item> {
+                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 7},
+                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 13},
+                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 25},
+                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 11},
+                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 17},
+                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 23}
+                                                   };
+
+            List<Item> ItemsOutput = new List<Item> {
+                                                     new Item{City = "Rostov na Donu", Year = 2000, Temperature = 15},
+                                                     new Item{City = "Rostov na Donu", Year = 2001, Temperature = 17}
+                                                    };
+
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
+
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
         }
     }
 }

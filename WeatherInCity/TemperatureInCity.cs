@@ -9,6 +9,15 @@ namespace WeatherInCity
     {
         public IEnumerable<Item> GetAverageTemperatureInCityPerYear(IEnumerable<Item> items)
         {
+            if (items == null) throw new ArgumentNullException();
+
+            foreach (var item in items)
+            {
+                if (item.City == "") throw new ArgumentException("City can't be empty.");
+                
+                if (!item.City.All(c => char.IsLetterOrDigit(c) || c == ' ')) throw new ArgumentException("City should consist only of letters, digits or space.");
+            }
+
             var group = items.GroupBy(p => new { p.City, p.Year });
 
             List<Item> Result = new List<Item>();
