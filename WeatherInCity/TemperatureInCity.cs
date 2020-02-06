@@ -7,7 +7,7 @@ namespace WeatherInCity
 {
     public class TemperatureInCity
     {
-        public IEnumerable<Item> AverageTemperatureInCityPerYear(IEnumerable<Item> items)
+        public IEnumerable<Item> GetAverageTemperatureInCityPerYear(IEnumerable<Item> items)
         {
             var group = items.GroupBy(p => new { p.City, p.Year });
 

@@ -8,7 +8,7 @@ namespace WeatherInCity.Test
     public class AverageTemperatureInCityPerYearTest
     {
         [TestMethod]
-        public void AverageTemperature_InputArray_Test()
+        public void GetAverageTemperature_InputArray_Test()
         {
             TemperatureInCity t = new TemperatureInCity();
 
@@ -26,13 +26,13 @@ namespace WeatherInCity.Test
                                      new Item{City = "Saratov", Year = 2001, Temperature = 40}
                                  };
 
-            var Result = t.AverageTemperatureInCityPerYear(ItemsInput);
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
             Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error array test.");
         }
 
         [TestMethod]
-        public void AverageTemperature_InputList_Test()
+        public void GetAverageTemperature_InputList_Test()
         {
             TemperatureInCity t = new TemperatureInCity();
 
@@ -50,13 +50,13 @@ namespace WeatherInCity.Test
                                                      new Item{City = "Saratov", Year = 2001, Temperature = 17}
                                                     };
 
-            var Result = t.AverageTemperatureInCityPerYear(ItemsInput);
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
             Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error list test.");
         }
 
         [TestMethod]
-        public void AverageTemperature_DifferentCity_Test()
+        public void GetAverageTemperature_DifferentCity_Test()
         {
             TemperatureInCity t = new TemperatureInCity();
 
@@ -82,7 +82,7 @@ namespace WeatherInCity.Test
                                                      new Item{City = "Engels", Year = 2001, Temperature = 15}
                                                     };
 
-            var Result = t.AverageTemperatureInCityPerYear(ItemsInput);
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
 
             Assert.IsTrue(CompareItems(ItemsOutput, Result), "Error different city test.");
         }
