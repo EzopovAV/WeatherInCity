@@ -159,5 +159,25 @@ namespace WeatherInCity.Test
 
             Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
         }
+
+        [TestMethod]
+        public void GetAverageTemperature_NegativeTemperature_Test()
+        {
+            TemperatureInCity t = new TemperatureInCity();
+
+            List<Item> ItemsInput = new List<Item> {
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = -10},
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = -11},
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = -11}
+                                                   };
+
+            List<Item> ItemsOutput = new List<Item> {
+                                                     new Item{City = "Saratov", Year = 2000, Temperature = -11}
+                                                    };
+
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
+
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
+        }
     }
 }

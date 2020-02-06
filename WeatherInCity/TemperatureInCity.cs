@@ -18,21 +18,32 @@ namespace WeatherInCity
                 if (!item.City.All(c => char.IsLetterOrDigit(c) || c == ' ')) throw new ArgumentException("City should consist only of letters, digits or space.");
             }
 
-            var group = items.GroupBy(p => new { p.City, p.Year });
+            //var group = items.GroupBy(p => new { p.City, p.Year });
 
-            List<Item> Result = new List<Item>();
+            //List<Item> Result = new List<Item>();
 
-            foreach (var item in group)
-            {
-                Result.Add(new Item
+            //foreach (var item in group)
+            //{
+            //    Result.Add(new Item
+            //    {
+            //        City = item.Key.City,
+            //        Year = item.Key.Year,
+            //        Temperature = (int)Math.Round(item.Average(t => t.Temperature))
+            //    });
+            //}
+
+            //return Result;
+
+
+            return items
+                .GroupBy(p => new { p.City, p.Year })
+                .Select(i => new Item
                 {
-                    City = item.Key.City,
-                    Year = item.Key.Year,
-                    Temperature = (int)Math.Round(item.Average(t => t.Temperature))
+                    City = i.Key.City,
+                    Year = i.Key.Year,
+                    Temperature = (int)Math.Round(i.Average(t => t.Temperature))
                 });
-            }
 
-            return Result;
         }
     }
 }
