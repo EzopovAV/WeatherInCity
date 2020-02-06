@@ -1,0 +1,8 @@
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\bin\Debug\netstandard2.0\WeatherInCity.deps.json
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\bin\Debug\netstandard2.0\WeatherInCity.dll
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\bin\Debug\netstandard2.0\WeatherInCity.pdb
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\obj\Debug\netstandard2.0\WeatherInCity.csprojAssemblyReference.cache
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\obj\Debug\netstandard2.0\WeatherInCity.AssemblyInfoInputs.cache
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\obj\Debug\netstandard2.0\WeatherInCity.AssemblyInfo.cs
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\obj\Debug\netstandard2.0\WeatherInCity.dll
+E:\EzopovAV\forMirantis\WeatherInCity\WeatherInCity\obj\Debug\netstandard2.0\WeatherInCity.pdb
