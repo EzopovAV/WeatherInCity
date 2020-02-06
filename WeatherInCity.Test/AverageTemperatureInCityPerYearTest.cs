@@ -122,17 +122,17 @@ namespace WeatherInCity.Test
             TemperatureInCity t = new TemperatureInCity();
 
             List<Item> ItemsInput = new List<Item> {
-                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 7},
-                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 13},
-                                                    new Item{City = "Rostov na Donu", Year = 2000, Temperature = 25},
-                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 11},
-                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 17},
-                                                    new Item{City = "Rostov na Donu", Year = 2001, Temperature = 23}
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2000, Temperature = 7},
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2000, Temperature = 13},
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2000, Temperature = 25},
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2001, Temperature = 11},
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2001, Temperature = 17},
+                                                    new Item{City = "Nizhniy Novgorod", Year = 2001, Temperature = 23}
                                                    };
 
             List<Item> ItemsOutput = new List<Item> {
-                                                     new Item{City = "Rostov na Donu", Year = 2000, Temperature = 15},
-                                                     new Item{City = "Rostov na Donu", Year = 2001, Temperature = 17}
+                                                     new Item{City = "Nizhniy Novgorod", Year = 2000, Temperature = 15},
+                                                     new Item{City = "Nizhniy Novgorod", Year = 2001, Temperature = 17}
                                                     };
 
             var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
@@ -173,6 +173,26 @@ namespace WeatherInCity.Test
 
             List<Item> ItemsOutput = new List<Item> {
                                                      new Item{City = "Saratov", Year = 2000, Temperature = -11}
+                                                    };
+
+            var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
+
+            Assert.IsTrue(Result.SequenceEqual(ItemsOutput), "Error list test.");
+        }
+
+        [TestMethod]
+        public void GetAverageTemperature_UpLowCharInCity_Test()
+        {
+            TemperatureInCity t = new TemperatureInCity();
+
+            List<Item> ItemsInput = new List<Item> {
+                                                    new Item{City = "Saratov", Year = 2000, Temperature = 0},
+                                                    new Item{City = "saratov", Year = 2000, Temperature = 20},
+                                                    new Item{City = "sAratov", Year = 2000, Temperature = 30}
+                                                   };
+
+            List<Item> ItemsOutput = new List<Item> {
+                                                     new Item{City = "Saratov", Year = 2000, Temperature = 17}
                                                     };
 
             var Result = t.GetAverageTemperatureInCityPerYear(ItemsInput);
