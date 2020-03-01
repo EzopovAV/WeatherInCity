@@ -5,7 +5,6 @@ namespace WeatherInCity
     public class Item : IEquatable<Item>
     {
         private  string _city;
-        private string _cityToLower;
         
         public string City
         {
@@ -15,8 +14,7 @@ namespace WeatherInCity
             }
             set
             {
-                _city = value;
-                _cityToLower = value.ToLower();
+                _city = value.ToLower();
             }
         }
         public int Year { get; set; }
@@ -26,7 +24,7 @@ namespace WeatherInCity
         {
             if (Object.ReferenceEquals(this, other)) return true;
             if (Object.ReferenceEquals(other, null)) return false;
-            return this._cityToLower == other._cityToLower && this.Year == other.Year && this.Temperature == other.Temperature;
+            return this._city == other._city && this.Year == other.Year && this.Temperature == other.Temperature;
         }
 
         public override bool Equals(object obj)
@@ -37,7 +35,7 @@ namespace WeatherInCity
 
         public override int GetHashCode()
         {
-            return this._cityToLower.GetHashCode()
+            return this._city.GetHashCode()
                 ^ this.Year.GetHashCode()
                 ^ this.Temperature.GetHashCode();
         }
