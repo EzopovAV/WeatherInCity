@@ -97,26 +97,6 @@ namespace WeatherInCity.Test
         }
 
         [TestMethod]
-        public void GetAverageTemperature_EmptyCityInput_Test()
-        {
-            List<Item> ItemsInput = new List<Item> {new Item{City = "", Year = 2000, Temperature = 7}};
-
-            TemperatureInCity t = new TemperatureInCity();
-
-            Assert.ThrowsException<ArgumentException>(() => t.GetAverageTemperatureInCityPerYear(ItemsInput));
-        }
-
-        [TestMethod]
-        public void GetAverageTemperature_NotLetterCityInput_Test()
-        {
-            List<Item> ItemsInput = new List<Item> { new Item { City = "Moskva_", Year = 2000, Temperature = 7 } };
-
-            TemperatureInCity t = new TemperatureInCity();
-
-            Assert.ThrowsException<ArgumentException>(() => t.GetAverageTemperatureInCityPerYear(ItemsInput));
-        }
-
-        [TestMethod]
         public void GetAverageTemperature_ComplexCity_Test()
         {
             TemperatureInCity t = new TemperatureInCity();
